@@ -81,23 +81,25 @@ const personalMovieDB = {
 
 let lastFilm, balls;
 
-for(let i = 0; i < 2; i++){
-    do {
+first: for (let i = 0; i < 2; i++) {
         lastFilm = prompt('Один из последних просмотренных фильмов?', '');
-    } while (lastFilm === '' || lastFilm.length > 50 );
-
-    balls = prompt('На сколько оцените его?', '');
+    if (lastFilm === '' || lastFilm.length > 50 ) {
+        continue first
+    }
+    balls = +prompt('На сколько оцените его?', '');
     personalMovieDB.movies[lastFilm] = balls;
 }
 
 if(personalMovieDB.count < 10) {
         alert("Просмотрено довольно мало фильмов");
-    } else if(personalMovieDB.count >= 1 && personalMovieDB.count <= 30) {
+    } else if(personalMovieDB.count >= 10 && personalMovieDB.count <= 30) {
         alert("Вы классический зритель");
     } else if(personalMovieDB.count > 30) {
         alert("Вы киноман");
+    } else {
+        alert("Произошла ошибка");
     }
 
 console.log(personalMovieDB);
 
-console.log(0 && 'swag4a4whe4h');
+
