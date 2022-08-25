@@ -81,13 +81,15 @@ const personalMovieDB = {
 
 let lastFilm, balls;
 
-first: for (let i = 0; i < 2; i++) {
+ for (let i = 0; i < 2; i++) {
         lastFilm = prompt('Один из последних просмотренных фильмов?', '');
-    if (lastFilm === '' || lastFilm.length > 50 ) {
-        continue first
+        balls = +prompt('На сколько оцените его?', '');
+    if (lastFilm == null || lastFilm == '' || lastFilm.length > 50 ||
+     balls == null || balls == '') {
+        i--; 
+    } else {
+        personalMovieDB.movies[lastFilm] = balls;
     }
-    balls = +prompt('На сколько оцените его?', '');
-    personalMovieDB.movies[lastFilm] = balls;
 }
 
 if(personalMovieDB.count < 10) {
