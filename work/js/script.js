@@ -87,8 +87,10 @@ let lastFilm, balls;
     if (lastFilm == null || lastFilm == '' || lastFilm.length > 50 ||
      balls == null || balls == '') {
         i--; 
+        console.log('Error');
     } else {
         personalMovieDB.movies[lastFilm] = balls;
+        console.log('Done!');
     }
 }
 
