@@ -37,7 +37,6 @@ const adv = document.querySelectorAll('.promo__adv img'),
       input = document.querySelector('.adding__input'),
       checkBox = document.querySelector('.add').children[4];
 
-      
 
       let movList = function() {  
         movieList.innerHTML = "";
@@ -65,8 +64,8 @@ btn.addEventListener('click', (event) => {
     let inp = input.value;
     event.preventDefault();
 
-    if (checkBox.checked && inp) {
-        console.log('Добавляем любимый фильм');
+    if (inp) {
+     
         if (inp.length < 21) {
           movieDB.movies.push(inp);
         } else {
@@ -77,12 +76,30 @@ btn.addEventListener('click', (event) => {
         movList();
         input.value = null;
 
-    }
-    console.log(movieDB.movies);
+        if (checkBox.checked) {
+          console.log('Добавляем любимый фильм');
+        }
+
+    } 
 });
 
 movieDB.movies.sort();
 
+console.log(movieList);
+
+movieList.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    if (e.target.classList.contains('delete') ) {
+        let indOfDeletFilm = e.target.parentNode.outerText[0] - 1;
+
+        movieDB.movies.splice(indOfDeletFilm, 1);
+
+            movieDB.movies.sort();
+            movList();
+           
+    }
+});
 
 
 
