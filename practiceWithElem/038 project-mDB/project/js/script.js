@@ -33,22 +33,23 @@ const adv = document.querySelectorAll('.promo__adv img'),
       poster = document.querySelector('.promo__bg'),
       genre = poster.querySelector('.promo__genre'),
       movieList = document.querySelector('.promo__interactive-list'),
-      btn = document.querySelector('.add').lastElementChild,
-      input = document.querySelector('.adding__input'),
-      checkBox = document.querySelector('.add').children[4];
+      addForm = document.querySelector('form.add'),
+      input = addForm.querySelector('.adding__input'),
+      checkBox = addForm.querySelector('[type="checkbox"]');
 
 
-      let movList = function() {  
-        movieList.innerHTML = "";
-        movieDB.movies.forEach((film, i) => {
-        movieList.innerHTML += `
-            <li class="promo__interactive-item">${i + 1} ${film}
-                <div class="delete"></div>
-            </li>
+    let movListCreate = function() {  
+    movieList.innerHTML = "";
+    movieDB.movies.forEach((film, i) => {
+    movieList.innerHTML += `
+        <li class="promo__interactive-item">${i + 1} ${film}
+            <div class="delete"></div>
+        </li>
         `;
-    });
-};
-    movList();
+        });
+    };
+    
+movListCreate();
 
 
 adv.forEach(item => {
@@ -60,7 +61,7 @@ genre.textContent = 'драма';
 poster.style.backgroundImage = 'url("img/bg.jpg")';
 
 
-btn.addEventListener('click', (event) => {
+addForm.addEventListener('submit', (event) => {
     let inp = input.value;
     event.preventDefault();
 
@@ -73,7 +74,7 @@ btn.addEventListener('click', (event) => {
             movieDB.movies.push(inp);
         }
         movieDB.movies.sort();
-        movList();
+        movListCreate();
         input.value = null;
 
         if (checkBox.checked) {
@@ -95,8 +96,8 @@ movieList.addEventListener('click', (e) => {
 
         movieDB.movies.splice(indOfDeletFilm, 1);
 
-            movieDB.movies.sort();
-            movList();
+        movieDB.movies.sort();
+        movListCreate();
            
     }
 });
