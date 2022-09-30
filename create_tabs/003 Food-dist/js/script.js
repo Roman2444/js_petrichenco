@@ -1,6 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
 
     // TABS
+    // ===========
 
     const tabs = document.querySelectorAll('.tabheader__item'),
         tabsContent = document.querySelectorAll('.tabcontent'),
@@ -44,6 +45,7 @@ window.addEventListener('DOMContentLoaded', () => {
     console.log(tabs);
 
 // TIMER
+// ============
 
 
 const deadline = '2022-11-11';
@@ -76,13 +78,21 @@ const timer = document.querySelector(selector),
 
 updateClock();
 
+function getZero(num) {
+    if (num >0 && num < 10) {
+        return `0${num}`;
+    } else {
+        return num;
+    }
+}
+
 function updateClock() {
     const t = getTimeRemaining(endtime);
 
-    days.innerHTML = (t.days);
-    hours.innerHTML = (t.hours);
-    minutes.innerHTML = (t.minutes);
-    seconds.innerHTML = (t.seconds);
+    days.innerHTML = getZero(t.days);
+    hours.innerHTML = getZero(t.hours);
+    minutes.innerHTML = getZero(t.minutes);
+    seconds.innerHTML = getZero(t.seconds);
 
     if (t.total <= 0) {
         clearInterval(timeInterval);
