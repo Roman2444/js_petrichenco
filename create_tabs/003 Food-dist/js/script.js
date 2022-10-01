@@ -115,20 +115,29 @@ window.addEventListener('DOMContentLoaded', () => {
     // MODAL
     // ========
 
-    const modalTrigger = document.querySelector('[data-modal]'),
+    const modalTrigger = document.querySelectorAll('[data-modal]'),
           modal = document.querySelector('.modal'),
           closeModal = document.querySelector('[data-close]');
 
 
-    modalTrigger.addEventListener('cliсk', function() {
-        console.log('ttttt')
+    modalTrigger.forEach(button => { 
+        button.addEventListener('click', showModal);
         });     
     
     function showModal() {
-        modal.style.display = 'block'
+        modal.classList.add('show');
+        modal.classList.remove('hide');
     }
-    console.dir(modalTrigger)
-    console.dir(modal)
+
+    closeModal.addEventListener('click', hideModal)
+
+    function hideModal() {
+        modal.classList.add('hide');
+        modal.classList.remove('show');
+    }
+
+    // console.dir(modalTrigger)
+    // console.dir(modal)
     // modal.classList.add('show');
     // modal.classList.remove('hide');
 
