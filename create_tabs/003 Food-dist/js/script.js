@@ -112,6 +112,26 @@ window.addEventListener('DOMContentLoaded', () => {
     setClock('.timer', deadline);
 
 
+    // MODAL
+    // ========
+
+    const modalTrigger = document.querySelector('[data-modal]'),
+          modal = document.querySelector('.modal'),
+          closeModal = document.querySelector('[data-close]');
+
+
+    modalTrigger.addEventListener('cliсk', function() {
+        console.log('ttttt')
+        });     
+    
+    function showModal() {
+        modal.style.display = 'block'
+    }
+    console.dir(modalTrigger)
+    console.dir(modal)
+    // modal.classList.add('show');
+    // modal.classList.remove('hide');
+
 
 
 });
