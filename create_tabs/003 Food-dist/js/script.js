@@ -46,7 +46,6 @@ window.addEventListener('DOMContentLoaded', () => {
  // TIMER
  // ============
 
-
     const deadline = '2023-09-04';
 
     function getTimeRemaining(endtime) {
@@ -269,7 +268,6 @@ window.addEventListener('DOMContentLoaded', () => {
             // для данных FormData заголовок не нужен
             // request.setRequestHeader('Content-type', 'application/json');
 
-
             const formData = new FormData(form);
 
             // если передаем данные в формате JSON
@@ -281,7 +279,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
             // const json = JSON.stringify(obj);
             // request.send(json);
-
 
             request.send(formData);
 
