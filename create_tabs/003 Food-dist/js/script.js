@@ -264,28 +264,27 @@ window.addEventListener('DOMContentLoaded', () => {
             form.insertAdjacentElement('afterend', statusMessage);
            
             const formData = new FormData(form);
-            
-            // если передаем данные в формате JSON
-            //======================================
-            // const obj = {};
-            // formData.forEach(function(value, key) {
-            //     obj[key] = value;
-            // });
 
-            // const json = JSON.stringify(obj);
-            // request.send(json);
+            const obj = {};
+            formData.forEach(function(value, key) {
+                obj[key] = value;
+            });
+            const json = JSON.stringify(obj);
+         
 
             fetch('server.php', {
                 method: 'POST',
-                body: formData,
-            }).then((data) => data.text())
-            . then(data => {console.log(data)
-                showThanksModal(message.success)
+                body: json,
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                  },
+            }).then(data => data.text())
+            .then(data => {console.log(data);
+                showThanksModal(message.success);
                 statusMessage.remove();
-            }).catch(() => {
-                showThanksModal(message.failure);
+            }).catch(() => {showThanksModal(message.failure);
             }).finally(() => {
-                form.reset(); 
+                form.reset();
             });
 
         });
