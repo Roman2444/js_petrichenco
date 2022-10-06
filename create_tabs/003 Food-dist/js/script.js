@@ -151,7 +151,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // const modalTimerId = setTimeout(showModal, 3000);
+    const modalTimerId = setTimeout(showModal, 60000);
 
     function showModalByScroll() {
         if (window.pageYOffset + document.documentElement.clientHeight >= document.
@@ -262,16 +262,9 @@ window.addEventListener('DOMContentLoaded', () => {
                 margin: 0 auto;
             `;
             form.insertAdjacentElement('afterend', statusMessage);
-
-            const request = new XMLHttpRequest();
-            request.open('POST', 'server.php');
-
-            // для данных FormData заголовок не нужен
-            // request.setRequestHeader('Content-type', 'application/json');
-
-
+           
             const formData = new FormData(form);
-
+            
             // если передаем данные в формате JSON
             //======================================
             // const obj = {};
@@ -282,18 +275,17 @@ window.addEventListener('DOMContentLoaded', () => {
             // const json = JSON.stringify(obj);
             // request.send(json);
 
-
-            request.send(formData);
-
-            request.addEventListener('load', () => {
-                if (request.status === 200) {
-                    console.log(request.response);
-                    showThanksModal(message.success);
-                    form.reset();
-                    statusMessage.remove();
-                } else {
-                    showThanksModal(message.failure);
-                }
+            fetch('server.php', {
+                method: 'POST',
+                body: formData,
+            }).then((data) => data.text())
+            . then(data => {console.log(data)
+                showThanksModal(message.success)
+                statusMessage.remove();
+            }).catch(() => {
+                showThanksModal(message.failure);
+            }).finally(() => {
+                form.reset(); 
             });
 
         });
