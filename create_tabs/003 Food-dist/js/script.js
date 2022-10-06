@@ -266,21 +266,19 @@ window.addEventListener('DOMContentLoaded', () => {
             request.open('POST', 'server.php');
 
             // для данных FormData заголовок не нужен
-            // request.setRequestHeader('Content-type', 'application/json');
+            request.setRequestHeader('Content-type', 'application/json');
 
             const formData = new FormData(form);
 
             // если передаем данные в формате JSON
             //======================================
-            // const obj = {};
-            // formData.forEach(function(value, key) {
-            //     obj[key] = value;
-            // });
+            const obj = {};
+            formData.forEach(function(value, key) {
+                obj[key] = value;
+            });
 
-            // const json = JSON.stringify(obj);
-            // request.send(json);
-
-            request.send(formData);
+            const json = JSON.stringify(obj);
+            request.send(json);
 
             request.addEventListener('load', () => {
                 if (request.status === 200) {
