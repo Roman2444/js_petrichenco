@@ -167,7 +167,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // =========================
 
     class MenuCard {
-        constructor(title, src, alt, descr, price, parentSelector, ...classes) {
+        constructor(src, alt, title, descr, price, parentSelector, ...classes) {
             this.title = title;
             this.src = src;
             this.alt = alt;
