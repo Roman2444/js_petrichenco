@@ -116,8 +116,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // ========
 
     const modalTrigger = document.querySelectorAll('[data-modal]'),
-          modal = document.querySelector('.modal'),
-          closeModalBtn = document.querySelector('[data-close]');
+          modal = document.querySelector('.modal');
           
 
     function showModal() {
@@ -137,10 +136,8 @@ window.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', showModal);
     });     
 
-    closeModalBtn.addEventListener('click', hideModal);
-
     modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
+        if (e.target === modal || e.target.getAttribute('data-close') == "") {
             hideModal();
         }
     });
@@ -204,25 +201,30 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    const getResource = async url => {
-        let res = await fetch(url);
+    // const getResource = async url => {
+    //     let res = await fetch(url);
     
-        if (!res.ok) {
-            throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-        }
+    //     if (!res.ok) {
+    //         throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+    //     }
     
-        return await res.json();
-    };
+    //     return await res.json();
+    // };
 
 
-    getResource('http://localhost:3000/menu')
-        .then(data => {
-            data.forEach(({img, altimg, title, descr, price}) => {
-                new MenuCard(img, altimg, title, descr, price, ".menu .container").render();
-            });
-        });
-    
+    // getResource('http://localhost:3000/menu')
+    //     .then(data => {
+    //         data.forEach(({img, altimg, title, descr, price}) => {
+    //             new MenuCard(img, altimg, title, descr, price, ".menu .container").render();
+    //         });
+    //     });
 
+    axios.get('http://localhost:3000/menu')
+    .then(data => {
+        data.data.forEach(({img, altimg, title, descr, price}) => {
+             new MenuCard(img, altimg, title, descr, price, ".menu .container").render();
+         });
+    });
 
     // Forms
     //==========
