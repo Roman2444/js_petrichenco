@@ -306,4 +306,55 @@ window.addEventListener('DOMContentLoaded', () => {
         }
 
 
+    //  Slider
+    // =========
+
+    const nextSlid = document.querySelector('.offer__slider-next'),
+          prevSlid = document.querySelector('.offer__slider-prev'),
+          numSlid = document.querySelector('#current'),
+          totalSlid = document.querySelector('#total'),
+          slides = document.querySelectorAll('.offer__slide');
+    let slideIndex = 1;
+
+    showSlides(slideIndex);
+
+    totalSlid.innerHTML=`${slides.length > 9 ? slides.length : '0' + slides.length}`;
+
+    function showNumSlid() {
+        numSlid.innerHTML = `${slideIndex > 9 ? slideIndex : '0' + slideIndex}`;
+    }
+
+    function showSlides(n) {
+    
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
+
+        slides.forEach(el => el.style.display = 'none');
+        slides[slideIndex - 1].style.display = 'block';
+        showNumSlid()
+       
+    }
+
+    function plusSlide(n) {
+
+        showSlides(slideIndex += n);
+
+    }
+    
+    nextSlid.addEventListener('click', () => {
+        plusSlide(1);
+        console.log('slideIndex', slideIndex)
+    });
+
+    prevSlid.addEventListener('click', () => {
+        plusSlide(-1);
+        console.log(slideIndex)
+    });
+    
+
+
 });
