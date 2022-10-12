@@ -330,6 +330,15 @@ window.addEventListener('DOMContentLoaded', () => {
         numSlid.innerHTML = `${slideIndex > 9 ? slideIndex : '0' + slideIndex}`;
     }
 
+    function sliderTransform() {
+        slidesField.style.transform = `translateX(-${offset}px)`;
+    }
+
+    function showActiveDot() {
+        dots.forEach(dot => dot.style.opacity = '.5');
+        dots[slideIndex - 1].style.opacity = 1;
+    }
+
     slidesField.style.width = 100 * slides.length + '%'; 
     slidesField.style.display = 'flex';
     slidesField.style.transition = '0.5s all';
@@ -338,7 +347,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     slides.forEach(slide => slide.style.width = width);
 
-    slider.style.position = 'relative'
+    slider.style.position = 'relative';
 
     const indicators = document.createElement('ol'),
           dots = [];
@@ -395,12 +404,11 @@ window.addEventListener('DOMContentLoaded', () => {
             slideIndex++;
         }
 
-        slidesField.style.transform = `translateX(-${offset}px)`;
+        sliderTransform();
         
         showNumSlid();
 
-        dots.forEach(dot => dot.style.opacity = '.5');
-        dots[slideIndex - 1].style.opacity = 1;
+        showActiveDot();
     });
 
     prevSlid.addEventListener('click', () => {
@@ -413,12 +421,11 @@ window.addEventListener('DOMContentLoaded', () => {
             slideIndex--;
         }
 
-        slidesField.style.transform = `translateX(-${offset}px)`;
+        sliderTransform();
         
         showNumSlid();
 
-        dots.forEach(dot => dot.style.opacity = '.5');
-        dots[slideIndex - 1].style.opacity = 1;
+        showActiveDot();
     });
 
     dots.forEach(dot => {
@@ -428,10 +435,9 @@ window.addEventListener('DOMContentLoaded', () => {
             slideIndex = slideTo;
             offset = +width.slice(0, width.length - 2) * (slideTo - 1);
 
-            slidesField.style.transform = `translateX(-${offset}px)`;
+            sliderTransform();
 
-            dots.forEach(dot => dot.style.opacity = '.5');
-            dots[slideIndex - 1].style.opacity = 1;
+            showActiveDot();
 
             showNumSlid();
 
