@@ -321,33 +321,50 @@ window.addEventListener('DOMContentLoaded', () => {
     let slideIndex = 1;
     let offset = 0;
 
+    totalSlid.innerHTML=`${slides.length > 9 ? slides.length : '0' + slides.length}`;
+   
+    showNumSlid();
+
+    function showNumSlid() {
+        numSlid.innerHTML = `${slideIndex > 9 ? slideIndex : '0' + slideIndex}`;
+    }
+
     slidesField.style.width = 100 * slides.length + '%'; 
     slidesField.style.display = 'flex';
     slidesField.style.transition = '0.5s all';
 
     slidesWrapper.style.overflow = 'hidden';
 
-
     slides.forEach(slide => slide.style.width = width);
 
     nextSlid.addEventListener('click', () => {
         if (offset == +width.slice(0, width.length - 2) * (slides.length - 1)) {
             offset = 0;
+            slideIndex = 1;
+            
         } else {
             offset += +width.slice(0, width.length - 2);
+            slideIndex++;
         }
 
         slidesField.style.transform = `translateX(-${offset}px)`;
+        
+        showNumSlid();
     });
 
     prevSlid.addEventListener('click', () => {
         if (offset == 0) {
             offset = +width.slice(0, width.length - 2) * (slides.length - 1);
+            slideIndex = slides.length ;
+            
         } else {
             offset -= +width.slice(0, width.length - 2);
+            slideIndex--;
         }
 
         slidesField.style.transform = `translateX(-${offset}px)`;
+        
+        showNumSlid();
     });
 
     // showSlides(slideIndex);
