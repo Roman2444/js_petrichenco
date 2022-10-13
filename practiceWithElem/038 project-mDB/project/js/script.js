@@ -107,4 +107,36 @@ document.addEventListener('DOMContentLoaded', () => {
     makeChanges();
     createMovieList(movieDB.movies, movieList);
 
+// localStorage
+// ================
+
+    checkbox.addEventListener('change', () => {
+        localStorage.setItem('isChecked', 'true');
+    });
+
+    if (localStorage.getItem('isChecked') ==='true') {
+        checkbox.checked = true;
+    }
+
+    const promo = document.querySelector('.promo__content');
+    const button = document.querySelector('button');
+
+// при одном нажатии на кнопку цвет меняется на синий и запоминается в localStorage, 
+// что при перезагрузке данный цвет сохранится. При повторном нажатии цвет возвращается
+// и удаляется из localStorage.
+    button.addEventListener('click', () => {
+        if (localStorage.getItem('colorButton')==='changed') {
+            button.style.backgroundColor='';
+            localStorage.removeItem('colorButton');
+        } else { 
+        localStorage.setItem('colorButton', 'changed');
+        button.style.backgroundColor='blue';
+        }
+    });
+
+    if (localStorage.getItem('colorButton')==='changed') {
+        button.style.backgroundColor='blue';
+    }
+   
+
 });
