@@ -11,13 +11,22 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const modalTimerId = setTimeout( () => showModal('.modal', modalTimerId), 60000);
 
-    tabs();
+    tabs('.tabheader__item', '.tabcontent', '.tabheader__items', 'tabheader__item_active');
     calc();
     cards();
     modal('[data-modal]', '.modal', modalTimerId);
-    slider();
-    timer();
-    forms(modalTimerId);
+    slider({
+        container: '.offer__slider',
+        nextArrow: '.offer__slider-next',
+        prevArrow: '.offer__slider-prev',
+        currentCounter: '#current',
+        totalCounter: '#total',
+        slide: '.offer__slide',
+        wrapper: '.offer__slider-wrapper',
+        field: '.offer_slider-inner'
+    });
+    timer('.timer', '2023-09-04');
+    forms('form', modalTimerId);
     
 
 });
