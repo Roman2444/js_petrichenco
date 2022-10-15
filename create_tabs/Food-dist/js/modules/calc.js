@@ -49,7 +49,6 @@ function calc() {
         }
     }
 
-
     function getStaticInformation(selector, activeClass) {
         const elements = document.querySelectorAll(selector);
        
@@ -109,4 +108,4 @@ function calc() {
 
 }
 
-module.exports = calc;
+export default calc;
