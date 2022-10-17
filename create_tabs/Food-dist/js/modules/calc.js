@@ -1,7 +1,5 @@
 function calc() {
 
-    // Calc
-    // ========
 
     const result = document.querySelector('.calculating__result span');
 

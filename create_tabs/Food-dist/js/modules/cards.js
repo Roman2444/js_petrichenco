@@ -1,8 +1,7 @@
 import {getResource} from '../services/services';
 
 function cards() {
-    //  созданы классы для меню
-    // =========================
+
 
     class MenuCard {
         constructor(src, alt, title, descr, price, parentSelector, ...classes) {

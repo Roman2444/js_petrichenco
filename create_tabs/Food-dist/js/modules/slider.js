@@ -1,6 +1,5 @@
 function slider({container, nextArrow, prevArrow, currentCounter, totalCounter, slide, wrapper, field}) {
-    //  Slider
-    // =========
+
 
     const nextSlid = document.querySelector(nextArrow),
           prevSlid = document.querySelector(prevArrow),

@@ -4,8 +4,6 @@ import {postData} from '../services/services';
 
 function forms(formSelector, modalTimerId) {
 
-    // Forms
-    //==========
 
     const forms = document.querySelectorAll(formSelector);
 
